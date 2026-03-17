@@ -791,6 +791,16 @@ board: GSU-RAM
       map address=00-3f,80-bf:6000-7fff size=0x2000
       map address=70-71,f0-f1:0000-ffff
 
+board: GSU-HIROM-RAM
+  processor architecture=GSU
+    map address=00-3f,80-bf:3000-34ff
+    memory type=ROM content=Program
+      map address=00-3f,80-bf:8000-ffff
+      map address=40-6f,72-7d,c0-ef,f2-ff:0000-ffff
+    memory type=RAM content=Save
+      map address=00-3f,80-bf:6000-7fff size=0x2000
+      map address=70-71,f0-f1:0000-ffff
+
 board: HIROM
   memory type=ROM content=Program
     map address=00-3f,80-bf:8000-ffff

@@ -26,8 +26,11 @@ auto Cartridge::loadBoard(string board) -> Markup::Node {
 }
 
 auto Cartridge::loadCartridge(Markup::Node node) -> void {
-  board = node["board"];
-  if(!board) board = loadBoard(game.board);
+  //Always try boards.bml first for full mapping definitions,
+  //fall back to inline manifest board if not found
+  board = loadBoard(game.board);
+
+  if(!board) board = node["board"];
 
   if(region() == "Auto") {
     auto region = game.region;

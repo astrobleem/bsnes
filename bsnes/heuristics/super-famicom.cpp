@@ -291,7 +291,7 @@ auto SuperFamicom::board() const -> string {
     board.append("BS-", mode);
   } else if(cartridgeTypeLo >= 0x3) {
     if(cartridgeTypeHi == 0x0) board.append("NEC-", mode);
-    if(cartridgeTypeHi == 0x1) board.append("GSU-");
+    if(cartridgeTypeHi == 0x1) board.append(mode == "HIROM-" ? "GSU-HIROM-" : "GSU-");
     if(cartridgeTypeHi == 0x2) board.append("OBC1-", mode);
     if(cartridgeTypeHi == 0x3) board.append("SA1-");
     if(cartridgeTypeHi == 0x4) board.append("SDD1-");
