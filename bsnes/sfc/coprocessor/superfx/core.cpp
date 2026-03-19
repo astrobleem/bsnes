@@ -1,4 +1,8 @@
 auto SuperFX::stop() -> void {
+  //flush pixel caches to RAM before halting, matching real hardware
+  //behavior where STOP commits all pending pixel data
+  flushPixelCache(pixelcache[1]);
+  flushPixelCache(pixelcache[0]);
   cpu.irq(1);
 }
 

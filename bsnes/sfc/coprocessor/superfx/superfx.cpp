@@ -29,7 +29,9 @@ auto SuperFX::main() -> void {
 
   if(regs.r[14].modified) {
     regs.r[14].modified = false;
-    updateROMBuffer();
+    //skip ROM prefetch when executing from RAM (PBR >= $60)
+    //the prefetch is a no-op in that context and the stall wastes cycles
+    if(regs.pbr < 0x60) updateROMBuffer();
   }
 
   if(regs.r[15].modified) {

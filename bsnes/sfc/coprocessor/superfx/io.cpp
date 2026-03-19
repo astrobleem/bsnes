@@ -67,7 +67,13 @@ auto SuperFX::writeIO(uint addr, uint8 data) -> void {
     }
     if(n == 14) updateROMBuffer();
 
-    if(addr == 0x301f) regs.sfr.g = 1;
+    if(addr == 0x301f) {
+      //clear stale state from previous execution before restarting
+      regs.romcl = 0;
+      regs.ramcl = 0;
+      regs.sfr.r = 0;
+      regs.sfr.g = 1;
+    }
     return;
   }
 
